@@ -12,7 +12,8 @@ RUN apk add --no-cache \
     npm \
     python3 \
     py3-pip \
-    && pip3 install flask
+    python3-dev \
+    py3-virtualenv
 
 # 安装Go Air用于热重载开发
 RUN go install github.com/cosmtrek/air@latest
@@ -40,7 +41,11 @@ COPY server .
 
 # 构建Go后端
 RUN go build -o /app/main
-
+# 创建并激活虚拟环境
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+# 在虚拟环境中安装 Flask
+RUN pip install --no-cache-dir flask
 # 暴露端口
 EXPOSE 8080 9000
 
