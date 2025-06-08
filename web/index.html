@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Go在线编译器</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+  <style>
+    :root {
+      --primary: #2d2d2d;
+      --secondary: #252526;
+      --accent: #007acc;
+      --text: #d4d4d4;
+    }
+    
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--primary);
+      color: var(--text);
+      overflow: hidden;
+    }
+    
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    
+    .editor-pane, .output-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    
+    .pane-header {
+      background-color: var(--secondary);
+      padding: 10px 15px;
+      font-weight: bold;
+      border-bottom: 1px solid #3c3c3c;
+    }
+    
+    .editor-container {
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    .output {
+      flex: 1;
+      background-color: #1e1e1e;
+      padding: 15px;
+      overflow: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    
+    .controls {
+      padding: 15px;
+      background-color: var(--secondary);
+      display: flex;
+      gap: 10px;
+    }
+    
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background-color: #0062a3;
+    }
+    
+    .cm-editor {
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="editor-pane">
+      <div class="pane-header">Go 代码编辑器</div>
+      <div class="editor-container" id="editor"></div>
+      <div class="controls">
+        <button id="runBtn">运行代码</button>
+        <button id="formatBtn">格式化代码</button>
+        <button id="exampleBtn">加载示例</button>
+      </div>
+    </div>
+    <div class="output-pane">
+      <div class="pane-header">运行结果</div>
+      <pre class="output" id="output">程序输出将显示在这里...</pre>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/go/go.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
