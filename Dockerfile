@@ -21,8 +21,8 @@ RUN go install github.com/cosmtrek/air@latest
 RUN mkdir -p /app/web
 WORKDIR /app/web
 
-# 安装前端依赖
-COPY web/package.json web/package-lock.json ./
+# 安装前端依赖 - 修复：只复制 package.json
+COPY web/package.json ./  # 只复制 package.json
 RUN npm install
 
 # 复制前端代码
